@@ -1,168 +1,757 @@
 ---
-title: API Reference
+title: Helga API Reference
 
 language_tabs:
-  - shell
-  - ruby
-  - python
+  - http: HTTP
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='http://github.com/tripit/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
-
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
-
-This example API documentation page was created with [Slate](http://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
-
-# Authentication
-
-> To authorize, use this code:
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Isis",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2"
-  -H "Authorization: meowmeowmeow"
-```
-
-> The above command returns JSON structured like this:
+> Standard json response for API:
 
 ```json
 {
-  "id": 2,
-  "name": "Isis",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "status": 0,
+  "data": [],
+  "message": null
 }
 ```
 
-This endpoint retrieves a specific kitten.
+This is an API documentation for the project Helga.
 
-<aside class="warning">If you're not using an administrator API key, note that some kittens will return 403 Forbidden if they are hidden for admins only.</aside>
+In this documentation the {domain} refers for the currently used domain site link. In case of the staging, this would be: <b>url here</b> 
+
+This means that the link to the api is: <b>url here</b>
+
+# User
+
+## Login
+
+> HTTP Request:
+
+```http
+POST /api/v1/login HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "token": "c73f1440-a3c2-11e5-ad02-bb8d25a8db36",
+        "user": {
+            "id": "48",
+            "name": "User One",
+            "company_id": "1",
+            "email": "userone@test.com",
+            "photo": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-Y8uvMEAzCiKGsqJsuWZJWJe361oe41SB.jpg"
+        }
+    },
+    "message": null
+}
+```
+
+The user can initiate a login with this request.
 
 ### HTTP Request
 
-`GET http://example.com/kittens/<ID>`
+`POST http://{{domain}}/api/v2/user/login`
 
-### URL Parameters
+### QUERY Parameters
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+username | string(20) | true | The username of the user which wants to login
+password | string(255) | true | The password of the user which wants to login
+
+# Get settings
+
+## Get settings
+
+> HTTP Request:
+
+```http
+GET /api/v1/get-settings HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "fuel": {
+            "1": "Hybride (Electro/Benzine)",
+            "2": "Hybride (Electro/Diesel)",
+            "3": "Benzine",
+            "4": "Diesel"
+        },
+        "transmission": {
+            "A": "messages.transmission_automatic",
+            "H": "messages.transmission_manual"
+        },
+        "vat": {
+            "MARGE": "Marge",
+            "BTW": "BTW"
+        },
+        "countries": {
+            "1": "Algeria@Algeria",
+            "2": "Angola@Angola",
+            "3": "Benin@Benin",
+            "4": "Botswana@Botswana",
+            "5": "Burkina Faso@Burkina Faso",
+            "6": "Burundi@Burundi",
+            "7": "Cameroon@Cameroon",
+            "8": "Cape Verde@Cape Verde",
+            "9": "Central African Republic@Central African Republic"
+        },
+        "body": {
+            "1": "Convertible",
+            "2": "Coupe",
+            "3": "Hatchback",
+            "4": "MPV"
+        },
+        "task_type": {
+            "incoming_transport": "Incoming Transport",
+            "outgoing_transport": "Outgoing Transport",
+            "other": "Other"
+        },
+        "task_statuses": {
+            "open": "Open",
+            "closed": "Closed"
+        },
+        "edit_values": {
+            "0": "0 %",
+            "4": "4 %",
+            "7": "7 %"
+        },
+        "portals": [
+            {
+                "id": "939",
+                "name": "Speurders.nl",
+                "default_type": "other",
+                "short": "SPD",
+                "long": "speurders"
+            },
+            {
+                "id": "940",
+                "name": "Stern",
+                "default_type": "other",
+                "short": "STR",
+                "long": "stern"
+            },
+            {
+                "id": "941",
+                "name": "Subaru.nl",
+                "default_type": "other",
+                "short": "SUB",
+                "long": "subaru"
+            },
+            {
+                "id": "942",
+                "name": "Supralift",
+                "default_type": "other",
+                "short": "SUP",
+                "long": "supralift"
+            }
+        ],
+        "color": {
+            "1": "beige",
+            "2": "blue",
+            "3": "brown",
+            "4": "cream",
+            "5": "miscellaneous"
+        },
+        "option": {
+            "1": "4x4 performance",
+            "2": "Anti-lock braking system",
+            "3": "Airbag(s)",
+            "4": "Air-conditioning",
+            "5": "Alarm system",
+            "6": "Automatic",
+            "7": "On-board computer",
+            "8": "Central door locking",
+            "9": "Cruise Control",
+            "10": "El. Climate Control",
+            "11": "Electric sun roof",
+            "12": "Electric windows",
+            "13": "Electric mirrors"
+        },
+        "keys": {
+            "1": 1,
+            "2": 2,
+            "3": 3,
+            "4": 4,
+            "5": 5
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/get-settings`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+
+
+## Get company settings
+
+> HTTP Request:
+
+```http
+GET /api/v1/get-company-settings HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "task_assignees": {
+            "1": {
+                "name": "super_admin",
+                "employees": {
+                    "46": "Zoltan Nagy",
+                    "47": "Fodor Zsolt"
+                }
+            },
+            "2": {
+                "name": "sales",
+                "employees": {
+                    "55": "Hans Kraaijeveld",
+                    "60": "Virginia Woolf",
+                    "77": "Test Employee",
+                    "82": "Emailer FF"
+                }
+            },
+            "195": {
+                "name": "Test Role",
+                "employees": []
+        },
+        "task_templates": {
+            "125": "Test template it",
+            "126": "Test template ot",
+            "127": "Test template other",
+            "128": "Test template related"
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/get-company-settings`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+
+# Tasks
+
+## List all task
+
+> HTTP Request:
+
+```http
+GET /api/v1/list-tasks HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "135",
+        "138",
+        "150",
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/list-tasks`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id | integer | false | 
+
+## List my task
+
+> HTTP Request:
+
+```http
+GET /api/v1/list-my-tasks HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "135",
+        "138",
+        "150",
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/list-my-tasks`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id | integer | false | 
+
+## Get tasks
+
+> HTTP Request:
+
+```http
+POST /api/v1/get-tasks HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        {
+            "id": "194",
+            "title": "jhgjg",
+            "deadline": "2015-12-21",
+            "is_opened": true,
+            "assignee": {
+                "name": "Fodor Zsolt",
+                "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/47-GUZElmlMsZaOcq4f24Bcm3XCJlFKIY01.jpg"
+            }
+        },
+        {
+            "id": "235",
+            "title": "test arnika",
+            "deadline": "",
+            "is_opened": true,
+            "assignee": {
+                "name": "tiel tiel@peugeot-vanhunnik.nl",
+                "profile_pic_url": "uploads/employee-avatars/public/img/user-image.png"
+            }
+        }
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/get-tasks`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+task_ids | array | true | Task id's
+
+## Get task temlate detail
+
+> HTTP Request:
+
+```http
+GET /api/v1/get-template-details/{template_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "title": "test 1",
+        "description": "test description",
+        "type": "incoming_transport",
+        "assigned_employee_id": "48",
+        "assigned_role_id": "",
+        "deadline": "2015-12-22"
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/get-template-details/{template_id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Show task details
+
+> HTTP Request:
+
+```http
+GET /api/v1/task/{id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "title": "Test task",
+        "description": "Test task description\n",
+        "type": "incoming_transport",
+        "assigned_employee_id": "47",
+        "assigned_role_id": "",
+        "deadline": "2015-11-30",
+        "is_opened": true,
+        "files": [
+            {
+                "id": "4",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-ZaB0DyMKGJGPT26ZEYlkGEO75bG4jhpS-resource-controller1.png",
+                "name": "resource-controller1.png"
+            },
+            {
+                "id": "5",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-OMtq58uXAOC9QVCjB00tiBApybegFTV9-AutotelexPRODataAPI.svc.xml",
+                "name": "AutotelexPRODataAPI.svc.xml"
+            }
+        ],
+        "comments": [
+            {
+                "employee_name": "User One",
+                "created_at": "2015-12-03",
+                "comment": "Testing"
+            },
+            {
+                "employee_name": "User One",
+                "created_at": "2015-11-23",
+                "comment": "test"
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/task/{id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Save task
+
+> HTTP Request:
+
+```http
+POST /api/v1/task HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/task`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id | integer | true | 
+title | string | true | 
+description | string | true | 
+type | string | false | 
+assigned_employee_id | integer | true (if assigned_role_id has not been sent) | 
+assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
+task_files | array(FILE) | false | 
+deadline | date | false | Date format (YY-MM-DD) 
+
+
+## Update task
+
+> HTTP Request:
+
+```http
+PUT /api/v1/task/{id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`PUT http://{{domain}}/api/v1/task/{id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+title | string | true | 
+description | string | true | 
+is_opened | boolean | true | 
+type | string | false | 
+assigned_employee_id | integer | true (if assigned_role_id has not been sent) | 
+assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
+task_files | array(FILE) | false | 
+deadline | date | false | Date format (YY-MM-DD) 
+
+## Destroy file
+
+> HTTP Request:
+
+```http
+POST /api/v1/task-destroy-file HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/task-destroy-file`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+task_id | integer | true | 
+file_id | integer | true | 
+
+## Save comment
+
+> HTTP Request:
+
+```http
+POST /api/v1/task-save-comment/{task_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/task-save-comment/{task_id}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+comment | string(500) | true | 
+
+# Order
+
+## Create order
+> HTTP Request:
+
+```http
+GET /api/v1/order-create HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "order_id": "22",
+        "cars": [
+            {
+                "price_on_invoice": "5000.00",
+                "order_car_id": "116",
+                "car_id": "928",
+                "name": "Nissan Qashqai 2.0 Tekna 4WD (5-drs SUV)",
+                "extra_costs": [
+                    {
+                        "id": "8",
+                        "created_at": "2015-12-15 09:56:39",
+                        "updated_at": "2015-12-15 09:56:39",
+                        "name": "alma",
+                        "order_car_id": "116",
+                        "price": "100.00",
+                        "employee_id": "48",
+                        "type": "extra_cost"
+                    }
+                ]
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/order-create
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## List outgoing order cars
+> HTTP Request:
+
+```http
+GET /api/v1/list-outgoing-order-cars HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "928",
+        "929"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/list-outgoing-order-cars
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Add car to outgoing order
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/add-outgoing-car/{car_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/add-outgoing-car/{car_id}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
 
