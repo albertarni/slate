@@ -224,101 +224,63 @@ GET /api/v1/get-company-settings HTTP/1.1
         "departments": {
             "1": {
                 "name": "super_admin",
-                "employees": [
-                    {
-                        "55": {
-                            "name": "Hans Kraaijeveld",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                "employees": {
+                    "46": {
+                        "name": "Zoltan Nagy",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
-                    {
-                        "46": {
-                            "name": "Zoltan Nagy",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                    "47": {
+                        "name": "Fodor Zsolt",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
-                    {
-                        "47": {
-                            "name": "Fodor Zsolt",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
-                    },
-                    {
-                        "48": {
-                            "name": "User One",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
-                    },
-                    {
-                        "82": {
-                            "name": "Emailer FF",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                    "48": {
+                        "name": "User One",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
-                ]
+                }
             },
             "3": {
                 "name": "administration",
-                "employees": [
-                    {
-                        "60": {
-                            "name": "Virginia Woolf",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                "employees": {
+                    "60": {
+                        "name": "Virginia Woolf",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
-                    {
-                        "77": {
-                            "name": "Test Employee",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                    "77": {
+                        "name": "Test Employee",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
-                    {
-                        "82": {
-                            "name": "Emailer FF",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                    "82": {
+                        "name": "Emailer FF",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
-                ]
+                }
             },
             "6": {
                 "name": "inspection",
-                "employees": [
-                    {
-                        "53": {
-                            "name": "Jane Austen",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                "employees": {
+                    "53": {
+                        "name": "Jane Austen",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
-                    {
-                        "60": {
-                            "name": "Virginia Woolf",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                    "60": {
+                        "name": "Virginia Woolf",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
-                ]
+                }
             },
             "195": {
                 "name": "Test Role",
-                "employees": []
+                "employees": {}
             },
             "196": {
                 "name": "Test Role 2",
-                "employees": [
-                    {
-                        "73": {
-                            "name": "Simple One",
-                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
-                        }
+                "employees": {
+                    "73": {
+                        "name": "Simple One",
+                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
-                ]
-            },
-            "197": {
-                "name": "Test Role 3",
-                "employees": []
-            },
-            "198": {
-                "name": "Test Role 4",
-                "employees": []
+                }
             }
         },
         "task_templates": {
@@ -327,7 +289,8 @@ GET /api/v1/get-company-settings HTTP/1.1
             "127": "Test template other",
             "128": "Test template related",
             "129": "Test template ot",
-            "130": "Test template ot"
+            "130": "Test template ot",
+            "131": "Test template ot"
         }
     },
     "message": null
@@ -634,7 +597,7 @@ delivery_address | string | false |
 > HTTP Request:
 
 ```http
-PUT /api/v1/task/{id} HTTP/1.1
+POST /api/v1/task-update/{id} HTTP/1.1
 
 ```
 
@@ -652,7 +615,7 @@ Description text here.
 
 ### HTTP Request
 
-`PUT http://{{domain}}/api/v1/task/{id}`
+`POST http://{{domain}}/api/v1/task-update/{id}`
 
 ### QUERY Parameters
 
