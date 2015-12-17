@@ -221,32 +221,113 @@ GET /api/v1/get-company-settings HTTP/1.1
 {
     "status": 0,
     "data": {
-        "task_assignees": {
+        "departments": {
             "1": {
                 "name": "super_admin",
-                "employees": {
-                    "46": "Zoltan Nagy",
-                    "47": "Fodor Zsolt"
-                }
+                "employees": [
+                    {
+                        "55": {
+                            "name": "Hans Kraaijeveld",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "46": {
+                            "name": "Zoltan Nagy",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "47": {
+                            "name": "Fodor Zsolt",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "48": {
+                            "name": "User One",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "82": {
+                            "name": "Emailer FF",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    }
+                ]
             },
-            "2": {
-                "name": "sales",
-                "employees": {
-                    "55": "Hans Kraaijeveld",
-                    "60": "Virginia Woolf",
-                    "77": "Test Employee",
-                    "82": "Emailer FF"
-                }
+            "3": {
+                "name": "administration",
+                "employees": [
+                    {
+                        "60": {
+                            "name": "Virginia Woolf",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "77": {
+                            "name": "Test Employee",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "82": {
+                            "name": "Emailer FF",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    }
+                ]
+            },
+            "6": {
+                "name": "inspection",
+                "employees": [
+                    {
+                        "53": {
+                            "name": "Jane Austen",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    },
+                    {
+                        "60": {
+                            "name": "Virginia Woolf",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    }
+                ]
             },
             "195": {
                 "name": "Test Role",
                 "employees": []
+            },
+            "196": {
+                "name": "Test Role 2",
+                "employees": [
+                    {
+                        "73": {
+                            "name": "Simple One",
+                            "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        }
+                    }
+                ]
+            },
+            "197": {
+                "name": "Test Role 3",
+                "employees": []
+            },
+            "198": {
+                "name": "Test Role 4",
+                "employees": []
+            }
         },
         "task_templates": {
             "125": "Test template it",
             "126": "Test template ot",
             "127": "Test template other",
-            "128": "Test template related"
+            "128": "Test template related",
+            "129": "Test template ot",
+            "130": "Test template ot"
         }
     },
     "message": null
@@ -363,17 +444,21 @@ POST /api/v1/get-tasks HTTP/1.1
             "assignee": {
                 "name": "Fodor Zsolt",
                 "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/47-GUZElmlMsZaOcq4f24Bcm3XCJlFKIY01.jpg"
-            }
+            },
+            "pickup_address": "",
+            "delivery_address": ""
         },
         {
-            "id": "235",
-            "title": "test arnika",
-            "deadline": "",
+            "id": "240",
+            "title": "arni 123",
+            "deadline": "2015-12-26",
             "is_opened": true,
             "assignee": {
-                "name": "tiel tiel@peugeot-vanhunnik.nl",
-                "profile_pic_url": "uploads/employee-avatars/public/img/user-image.png"
-            }
+                "name": "Test Employee",
+                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+            },
+            "pickup_address": "Fake, 374, 455455 Tg Mures 123",
+            "delivery_address": "Dutch, 444, 444445 Dutch City 123"
         }
     ],
     "message": null
@@ -408,12 +493,14 @@ GET /api/v1/get-template-details/{template_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "title": "test 1",
-        "description": "test description",
-        "type": "incoming_transport",
-        "assigned_employee_id": "48",
-        "assigned_role_id": "",
-        "deadline": "2015-12-22"
+        "title": "test 123",
+        "description": "description text",
+        "type": "",
+        "assigned_employee_id": "73",
+        "assigned_role_id": "3",
+        "pickup_address": "",
+        "delivery_address": "",
+        "deadline": ""
     },
     "message": null
 }
@@ -451,30 +538,36 @@ GET /api/v1/task/{id} HTTP/1.1
         "type": "incoming_transport",
         "assigned_employee_id": "47",
         "assigned_role_id": "",
+        "pickup_address": "Fake, 374, 455455 Tg Mures 123",
+        "delivery_address": "Dutch, 444, 444445 Dutch City 123",
         "deadline": "2015-11-30",
         "is_opened": true,
-        "files": [
+        "task_files": [
             {
-                "id": "4",
-                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-ZaB0DyMKGJGPT26ZEYlkGEO75bG4jhpS-resource-controller1.png",
-                "name": "resource-controller1.png"
+                "id": "30",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/154-X8AMlCD11jIOoGdMDvjriHMe2mDl07lJ-import_car_header_template_en.csv",
+                "name": "import_car_header_template_en.csv",
+                "is_image": 0
             },
             {
-                "id": "5",
-                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-OMtq58uXAOC9QVCjB00tiBApybegFTV9-AutotelexPRODataAPI.svc.xml",
-                "name": "AutotelexPRODataAPI.svc.xml"
+                "id": "31",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/154-oCvkgm7JqZnbBa9P2bwie4Zc7VWDwb7R-demo-image0.jpg",
+                "name": "demo-image0.jpg",
+                "is_image": 1
             }
         ],
         "comments": [
             {
                 "employee_name": "User One",
-                "created_at": "2015-12-03",
-                "comment": "Testing"
+                "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-Y8uvMEAzCiKGsqJsuWZJWJe361oe41SB.jpg",
+                "created_at": "2015-12-17",
+                "comment": "korte"
             },
             {
                 "employee_name": "User One",
-                "created_at": "2015-11-23",
-                "comment": "test"
+                "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-Y8uvMEAzCiKGsqJsuWZJWJe361oe41SB.jpg",
+                "created_at": "2015-12-17",
+                "comment": "alma"
             }
         ]
     },
@@ -532,6 +625,8 @@ assigned_employee_id | integer | true (if assigned_role_id has not been sent) |
 assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
 task_files | array(FILE) | false | 
 deadline | date | false | Date format (YY-MM-DD) 
+pickup_address | string | false |
+delivery_address | string | false | 
 
 
 ## Update task
@@ -572,6 +667,8 @@ assigned_employee_id | integer | true (if assigned_role_id has not been sent) |
 assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
 task_files | array(FILE) | false | 
 deadline | date | false | Date format (YY-MM-DD) 
+pickup_address | string | false |
+delivery_address | string | false | 
 
 ## Destroy file
 
