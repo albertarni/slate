@@ -291,6 +291,20 @@ GET /api/v1/get-company-settings HTTP/1.1
             "129": "Test template ot",
             "130": "Test template ot",
             "131": "Test template ot"
+        },
+        "clients": {
+            "3": {
+                "name": "Hunnik Tiel B.V.",
+                "address": "Simon Stevinstraat, 15, 4004 JV Tiel"
+            },
+            "4": {
+                "name": "Garagebedrijf Kardol B.V.",
+                "address": "Stephensonstraat, 21, 4004 JA Tiel"
+            },
+            "5": {
+                "name": "Automobielbedrijf Bert Story",
+                "address": "Lagelandseweg, 66, 6545 CG Nijmegen"
+            }
         }
     },
     "message": null
@@ -441,45 +455,6 @@ Parameter | Type | Required | Description
 token | string | true | The authentication token
 task_ids | array | true | Task id's
 
-## Get task temlate detail
-
-> HTTP Request:
-
-```http
-GET /api/v1/get-template-details/{template_id} HTTP/1.1
-
-```
-
-> Response:
-
-```json
-{
-    "status": 0,
-    "data": {
-        "title": "test 123",
-        "description": "description text",
-        "type": "",
-        "assigned_employee_id": "73",
-        "assigned_role_id": "3",
-        "pickup_address": "",
-        "delivery_address": "",
-        "deadline": ""
-    },
-    "message": null
-}
-```
-
-Description text here.
-
-### HTTP Request
-
-`GET http://{{domain}}/api/v1/get-template-details/{template_id}`
-
-### QUERY Parameters
-
-Parameter | Type | Required | Description
---------- | ---- | -------- | -----------
-token | string | true | The authentication token
 
 ## Show task details
 
@@ -585,8 +560,7 @@ title | string | true |
 description | string | true | 
 type | string | false | 
 assigned_employee_id | integer | true (if assigned_role_id has not been sent) | 
-assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
-task_files | array(FILE) | false | 
+assigned_role_id | integer | true (if assigned_employee_id has not been sent) | e | 
 deadline | date | false | Date format (YY-MM-DD) 
 pickup_address | string | false |
 delivery_address | string | false | 
@@ -628,12 +602,65 @@ is_opened | boolean | true |
 type | string | false | 
 assigned_employee_id | integer | true (if assigned_role_id has not been sent) | 
 assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
-task_files | array(FILE) | false | 
 deadline | date | false | Date format (YY-MM-DD) 
 pickup_address | string | false |
 delivery_address | string | false | 
 
-## Destroy file
+## Save task file
+
+> HTTP Request:
+
+```http
+POST /api/v1/task-save-file/{task_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "task_files": [
+            {
+                "id": "4",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-ZaB0DyMKGJGPT26ZEYlkGEO75bG4jhpS-resource-controller1.png",
+                "name": "resource-controller1.png",
+                "is_image": 1
+            },
+            {
+                "id": "5",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-OMtq58uXAOC9QVCjB00tiBApybegFTV9-AutotelexPRODataAPI.svc.xml",
+                "name": "AutotelexPRODataAPI.svc.xml",
+                "is_image": 0
+            },
+            {
+                "id": "6",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/135-eGfWJE7KyGADlOrE0Ck3CtNhHMFfAik2-req_res_DATAAPI_0900.txt",
+                "name": "req_res_DATAAPI_0900.txt",
+                "is_image": 0
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/task-save-file/{task_id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+task_file | FILE | true | 
+
+
+## Destroy task file
 
 > HTTP Request:
 
@@ -680,7 +707,22 @@ POST /api/v1/task-save-comment/{task_id} HTTP/1.1
 ```json
 {
     "status": 0,
-    "data": null,
+    "data": {
+        "comments": [
+            {
+                "employee_name": "Zoltan Nagy",
+                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png",
+                "created_at": "2015-12-18",
+                "comment": "almafa-123"
+            },
+            {
+                "employee_name": "Zoltan Nagy",
+                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png",
+                "created_at": "2015-12-18",
+                "comment": "almafa"
+            }
+        ]
+    },
     "message": null
 }
 ```
@@ -715,24 +757,43 @@ GET /api/v1/order-create HTTP/1.1
     "status": 0,
     "data": {
         "order_id": "22",
-        "cars": [
+        "outgoing_cars": [
             {
-                "price_on_invoice": "5000.00",
-                "order_car_id": "116",
+                "price_on_invoice": "50000.00",
+                "order_car_id": "122",
                 "car_id": "928",
                 "name": "Nissan Qashqai 2.0 Tekna 4WD (5-drs SUV)",
                 "extra_costs": [
                     {
-                        "id": "8",
-                        "created_at": "2015-12-15 09:56:39",
-                        "updated_at": "2015-12-15 09:56:39",
+                        "id": "9",
+                        "created_at": "2015-12-17 12:19:34",
+                        "updated_at": "2015-12-17 12:19:34",
                         "name": "alma",
-                        "order_car_id": "116",
+                        "order_car_id": "122",
                         "price": "100.00",
+                        "employee_id": "48",
+                        "type": "extra_cost"
+                    },
+                    {
+                        "id": "10",
+                        "created_at": "2015-12-17 12:19:40",
+                        "updated_at": "2015-12-17 12:19:40",
+                        "name": "korte",
+                        "order_car_id": "122",
+                        "price": "200.00",
                         "employee_id": "48",
                         "type": "extra_cost"
                     }
                 ]
+            }
+        ],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "10000.00",
+                "order_car_id": "123",
+                "car_id": "980",
+                "name": "Aston Martin Cygnet ",
+                "extra_costs": []
             }
         ]
     },
@@ -751,6 +812,7 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
+car_id | integer | false | 
 
 ## List outgoing order cars
 > HTTP Request:
@@ -798,7 +860,27 @@ POST /api/v1/order/{order_id}/add-outgoing-car/{car_id} HTTP/1.1
 ```json
 {
     "status": 0,
-    "data": null,
+    "data": {
+        "order_id": "22",
+        "outgoing_cars": [
+            {
+                "price_on_invoice": "0.00",
+                "order_car_id": "126",
+                "car_id": "899",
+                "name": "Opel Astra ",
+                "extra_costs": []
+            }
+        ],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "10000.00",
+                "order_car_id": "123",
+                "car_id": "980",
+                "name": "Aston Martin Cygnet ",
+                "extra_costs": []
+            }
+        ]
+    },
     "message": null
 }
 ```
@@ -814,4 +896,119 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
+price_on_invoice | decimal | false | 
+
+## Remove car from outgoing order
+> HTTP Request:
+
+```http
+POST /api/v1/order/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "order_id": "22",
+        "outgoing_cars": [],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "10000.00",
+                "order_car_id": "123",
+                "car_id": "980",
+                "name": "Aston Martin Cygnet ",
+                "extra_costs": []
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/delete-outgoing-car/{car_id}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Add car to incoming order
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/add-incoming-car HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "order_id": "22",
+        "outgoing_cars": [
+            {
+                "price_on_invoice": "0.00",
+                "order_car_id": "126",
+                "car_id": "899",
+                "name": "Opel Astra ",
+                "extra_costs": []
+            }
+        ],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "10000.00",
+                "order_car_id": "123",
+                "car_id": "980",
+                "name": "Aston Martin Cygnet ",
+                "extra_costs": []
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/add-incoming-car
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+regplate | string | true | 
+vin_number | string | false | 
+brand_id | integer | true | 
+model_id | integer | true | 
+model_extra | string | false | 
+mileage | integer | true | 
+year_of_make | date | true | 
+first_nl_reg | date | false | 
+first_int_reg | date | false | 
+color_id | integer | false | 
+fuel_id | integer | true | 
+gearbox_type | string | false | 
+pc_type | string | true | 
+body_id | integer | false | 
+btw | string | true | 
+price_brutto_bpm | string | true | 
+rest_bpm | string | true | 
+price_estimated_costs | string | true | 
+economic_value | string | true | 
+condition | string | true | 
+price_on_invoice | string | true | 
+
 
