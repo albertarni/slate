@@ -674,7 +674,28 @@ POST /api/v1/task-destroy-file HTTP/1.1
 ```json
 {
     "status": 0,
-    "data": null,
+    "data": {
+        "task_files": [
+            {
+                "id": "37",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/240-tmuxrlqOpF7hXxL6jEJOmfqUM2avd3zg-import_car_header_template_en.csv",
+                "name": "import_car_header_template_en.csv",
+                "is_image": 0
+            },
+            {
+                "id": "38",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/240-WtU30PARjn2jQSj2B81A8z8XFWxPeIK4-demo-image0.jpg",
+                "name": "demo-image0.jpg",
+                "is_image": 1
+            },
+            {
+                "id": "39",
+                "download_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/task-files/240-feaexzsFNYyGKWy0dKLtVBm4WmwdHWTD-vertical-wallpapers.jpg",
+                "name": "vertical-wallpapers.jpg",
+                "is_image": 1
+            }
+        ]
+    },
     "message": null
 }
 ```
