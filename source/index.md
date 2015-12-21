@@ -305,6 +305,29 @@ GET /api/v1/get-company-settings HTTP/1.1
                 "name": "Automobielbedrijf Bert Story",
                 "address": "Lagelandseweg, 66, 6545 CG Nijmegen"
             }
+        },
+        "car_tags": {
+            "32": "Nice",
+            "52": "aztamindenitdekocsi",
+            "53": "teszt kocsi"
+        },
+        "client_tags": {
+            "7": "HELGA user",
+            "10": "exclusieve auto's",
+            "11": "vakgarage",
+            "12": "export",
+            "13": "oortje pool",
+            "16": " cat I A",
+            "17": "marktplaats",
+            "20": "bloedworst",
+            "31": "rommelkont",
+            "48": "brand new tag",
+            "49": "brand new tag",
+            "68": "nice",
+            "69": "test 1",
+            "70": "test",
+            "71": "test2",
+            "72": "test 3"
         }
     },
     "message": null
@@ -322,6 +345,264 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
+
+
+#Cars
+
+## List incoming cars
+
+> HTTP Request:
+
+```http
+POST /api/v1/list-incoming-cars HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "980",
+        "951",
+        "950",
+        "949",
+        "938"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/list-incoming-cars`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+
+## List in stock cars
+
+> HTTP Request:
+
+```http
+POST /api/v1/list-instock-cars HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "980",
+        "951",
+        "950",
+        "949",
+        "938"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POSt http://{{domain}}/api/v1/list-instock-cars`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+
+## List outgoing cars
+
+> HTTP Request:
+
+```http
+POST /api/v1/list-outgoing-cars HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "980",
+        "951",
+        "950",
+        "949",
+        "938"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POSt http://{{domain}}/api/v1/list-outgoing-cars`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+
+## List archived cars
+
+> HTTP Request:
+
+```http
+POST /api/v1/list-archive-cars HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "980",
+        "951",
+        "950",
+        "949",
+        "938"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POSt http://{{domain}}/api/v1/list-archive-cars`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+
+## List all cars grouped
+
+> HTTP Request:
+
+```http
+POST /api/v1/list-all-cars-grouped HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "incoming": [
+            "980",
+            "951",
+            "950",
+            "949",
+            "938"
+        ],
+        "stock": [
+            "952",
+            "929"
+        ],
+        "outgoing": [
+            "933",
+            "928"
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POSt http://{{domain}}/api/v1/list-all-cars-grouped`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+
+## Get cars
+
+> HTTP Request:
+
+```http
+POST /api/v1/get-cars HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        {
+            "id": "980",
+            "name": "Aston Martin Cygnet ",
+            "regplate": "O12356",
+            "year_of_make": "2015-12-16",
+            "mileage": "2200",
+            "location_in_stock": false,
+            "visible_online": true,
+            "blocked": false,
+            "eu_price": "0.00",
+            "eu_vat_price": "0.00",
+            "b2b_price": "0.00",
+            "b2c_price": "0.00",
+            "url": "http://www.balletmakkai.com/images/face.png",
+            "can_be_added_to_order": false
+        },
+        {
+            "id": "951",
+            "name": "Skoda Fabia ",
+            "regplate": "SD44AA",
+            "year_of_make": "2000-07-10",
+            "mileage": "545445",
+            "location_in_stock": false,
+            "visible_online": true,
+            "blocked": false,
+            "eu_price": "",
+            "eu_vat_price": "",
+            "b2b_price": "",
+            "b2c_price": "",
+            "url": "http://www.balletmakkai.com/images/face.png",
+            "can_be_added_to_order": false
+        }
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POSt http://{{domain}}/api/v1/get-cars`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
+car_ids | array | true |
+
 
 
 # Tasks
@@ -539,7 +820,9 @@ POST /api/v1/task HTTP/1.1
 ```json
 {
     "status": 0,
-    "data": null,
+    "data": {
+        "task_id": 243
+    },
     "message": null
 }
 ```
@@ -560,7 +843,7 @@ title | string | true |
 description | string | true | 
 type | string | false | 
 assigned_employee_id | integer | true (if assigned_role_id has not been sent) | 
-assigned_role_id | integer | true (if assigned_employee_id has not been sent) | e | 
+assigned_role_id | integer | true (if assigned_employee_id has not been sent) | 
 deadline | date | false | Date format (YY-MM-DD) 
 pickup_address | string | false |
 delivery_address | string | false | 
@@ -868,6 +1151,73 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
 
+## Add extra cost 
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/add-extra-cost' HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "extra_cost_id": 17
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/add-extra-cost`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+order_car_id | integer| true
+name | string | true
+price | double | true
+
+
+## Update extra cost 
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/update-extra-cost/{extra_cost_id} HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/update-extra-cost/{extra_cost_id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+name | string | true
+price | double | true
+
+
 ## Add car to outgoing order
 > HTTP Request:
 
@@ -923,7 +1273,7 @@ price_on_invoice | decimal | false |
 > HTTP Request:
 
 ```http
-POST /api/v1/order/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
+POST /api/v1/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
 
 ```
 
@@ -961,7 +1311,7 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
 
-## Add car to incoming order
+## Add car to incoming order manually
 > HTTP Request:
 
 ```http
@@ -1010,26 +1360,119 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
-regplate | string | true | 
+regplate | string | false | 
 vin_number | string | false | 
 brand_id | integer | true | 
 model_id | integer | true | 
 model_extra | string | false | 
 mileage | integer | true | 
-year_of_make | date | true | 
-first_nl_reg | date | false | 
-first_int_reg | date | false | 
+year_of_make | date | true | Date format (YY-MM-DD) 
+first_nl_reg | date | false | Date format (YY-MM-DD) 
+first_int_reg | date | false | Date format (YY-MM-DD) 
 color_id | integer | false | 
 fuel_id | integer | true | 
 gearbox_type | string | false | 
 pc_type | string | true | 
-body_id | integer | false | 
+body_id | integer | false |
+condition | string | true |   
 btw | string | true | 
-price_brutto_bpm | string | true | 
-rest_bpm | string | true | 
-price_estimated_costs | string | true | 
-economic_value | string | true | 
-condition | string | true | 
-price_on_invoice | string | true | 
+price_on_invoice | double | false |
+price_brutto_bpm | integer | false | 
+rest_bpm | integer | false | 
+price_estimated_costs | double | false | 
+economic_value | double | true | 
+
+## Remove car from incoming order
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/delete-incoming-car/{car_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "order_id": "22",
+        "outgoing_cars": [],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "10000.00",
+                "order_car_id": "123",
+                "car_id": "980",
+                "name": "Aston Martin Cygnet ",
+                "extra_costs": []
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/delete-incoming-car/{car_id}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
 
 
+## Import Car by Reg. Plate
+> HTTP Request:
+
+```http
+GET /api/v1/import-by-regplate/{regplate} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/import-by-regplate/{regplate}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Import Car by VIN number
+> HTTP Request:
+
+```http
+GET /api/v1/import-by-vin/{vin} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/import-by-vin/{vin}
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
