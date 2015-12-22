@@ -1295,7 +1295,18 @@ POST /api/v1/order/{order_id}/add-extra-cost' HTTP/1.1
 {
     "status": 0,
     "data": {
-        "extra_cost_id": 17
+        "extra_costs": [
+            {
+                "id": "9",
+                "created_at": "2015-12-17 12:19:34",
+                "updated_at": "2015-12-17 12:19:34",
+                "name": "alma",
+                "order_car_id": "122",
+                "price": "100.00",
+                "employee_id": "48",
+                "type": "extra_cost"
+            }
+        ]
     },
     "message": null
 }
@@ -1321,7 +1332,7 @@ price | double | true
 > HTTP Request:
 
 ```http
-POST /api/v1/order/{order_id}/update-extra-cost/{extra_cost_id} HTTP/1.1
+POST /api/v1/extra-cost-update/{id} HTTP/1.1
 ```
 
 > Response:
@@ -1338,7 +1349,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/update-extra-cost/{extra_cost_id}`
+`POST http://{{domain}}/api/v1/extra-cost-update/{id}`
 
 ### QUERY Parameters
 
