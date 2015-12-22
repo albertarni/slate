@@ -131,36 +131,6 @@ GET /api/v1/get-settings HTTP/1.1
             "4": "4 %",
             "7": "7 %"
         },
-        "portals": [
-            {
-                "id": "939",
-                "name": "Speurders.nl",
-                "default_type": "other",
-                "short": "SPD",
-                "long": "speurders"
-            },
-            {
-                "id": "940",
-                "name": "Stern",
-                "default_type": "other",
-                "short": "STR",
-                "long": "stern"
-            },
-            {
-                "id": "941",
-                "name": "Subaru.nl",
-                "default_type": "other",
-                "short": "SUB",
-                "long": "subaru"
-            },
-            {
-                "id": "942",
-                "name": "Supralift",
-                "default_type": "other",
-                "short": "SUP",
-                "long": "supralift"
-            }
-        ],
         "color": {
             "1": "beige",
             "2": "blue",
@@ -328,6 +298,28 @@ GET /api/v1/get-company-settings HTTP/1.1
             "70": "test",
             "71": "test2",
             "72": "test 3"
+        },
+         "hexon_portals": {
+            "4096": {
+                "name": "0800autolease.nl",
+                "type": "main"
+            },
+            "4117": {
+                "name": "123Machine",
+                "type": "main"
+            },
+            "4138": {
+                "name": "2dehands.be",
+                "type": "other"
+            },
+            "4159": {
+                "name": "2dehands.nl",
+                "type": "other"
+            },
+            "4180": {
+                "name": "AD Autobedrijf",
+                "type": "other"
+            }
         }
     },
     "message": null
@@ -594,7 +586,7 @@ Description text here.
 
 ### HTTP Request
 
-`POSt http://{{domain}}/api/v1/get-cars`
+`POST http://{{domain}}/api/v1/get-cars`
 
 ### QUERY Parameters
 
@@ -602,6 +594,145 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token 
 car_ids | array | true |
+
+
+## Show car details
+
+> HTTP Request:
+
+```http
+GET /api/v1/car/{id} HTTP/1.1
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "id": "1",
+        "regplate": "DAC123",
+        "first_int_reg": "",
+        "first_nl_reg": "",
+        "mileage": "175000",
+        "btw": "BTW",
+        "year_of_make": "2005-11-07",
+        "model_extra": "",
+        "gearbox_type": "M",
+        "inspected": "0",
+        "nr_of_keys": "0",
+        "economic_value": "6000.00",
+        "price_b2b": "",
+        "price_b2c": "",
+        "price_export": "",
+        "price_take_away": "",
+        "price_special_price": "",
+        "price_brutto_bpm": "",
+        "rest_bpm": "2000",
+        "vin_number": "",
+        "model_year": "",
+        "producer_color": "",
+        "pc_type": "P",
+        "car_type": "",
+        "is_imported": "0",
+        "brand_id": "124",
+        "model_id": "1777",
+        "color_id": "2",
+        "fuel_id": "4",
+        "body_id": "6",
+        "apk_date": "",
+        "guarantee_end_date": "",
+        "original_new_price": "",
+        "location_client_id": "",
+        "location_address": "",
+        "blocked": "2015-12-22 09:02:11",
+        "location_in_stock": true,
+        "is_new": true,
+        "extras": [
+            "1",
+            "2",
+            "6"
+        ],
+        "tags": [
+            "53",
+            "32"
+        ],
+        "tasks": [
+            "162"
+        ],
+        "advertsing": [
+            "4096",
+            "4117"
+        ],
+        "commercial_notes": [],
+        "transactions": {
+            "incoming": [
+                {
+                    "id": "1",
+                    "contact_id": "723",
+                    "employee_id": "47",
+                    "confirmed_at": "2015-12-14 08:57:04",
+                    "created_at": "2015-12-14 08:55:37",
+                    "updated_at": "2015-12-14 08:57:04",
+                    "deleted_at": null,
+                    "last_updated_by": "47",
+                    "separate_invoice_incoming": "1",
+                    "separate_invoice_outgoing": "1",
+                    "official_note": "",
+                    "pivot": {
+                        "car_id": "1",
+                        "order_id": "1"
+                    }
+                }
+            ],
+            "outgoing": [
+                {
+                    "id": "2",
+                    "contact_id": "725",
+                    "employee_id": "47",
+                    "confirmed_at": null,
+                    "created_at": "2015-12-14 11:19:30",
+                    "updated_at": "2015-12-14 11:21:02",
+                    "deleted_at": null,
+                    "last_updated_by": "47",
+                    "separate_invoice_incoming": "1",
+                    "separate_invoice_outgoing": "1",
+                    "official_note": "",
+                    "pivot": {
+                        "car_id": "1",
+                        "order_id": "2"
+                    }
+                }
+            ]
+        },
+        "images": {
+            "212": {
+                "name": "1zQT6LEeDWduTSlbS5tUR6dtlGEcqAIw.jpg",
+                "public": "1",
+                "url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/1zQT6LEeDWduTSlbS5tUR6dtlGEcqAIw.jpg"
+            },
+            "213": {
+                "name": "J09MG52BiKWaWA2WxlIwnPKNP1So5MEO.jpg",
+                "public": "1",
+                "url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/J09MG52BiKWaWA2WxlIwnPKNP1So5MEO.jpg"
+            }
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/car/{id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token 
 
 
 
