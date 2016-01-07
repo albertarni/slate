@@ -138,6 +138,45 @@ GET /api/v1/get-settings HTTP/1.1
             "4": "cream",
             "5": "miscellaneous"
         },
+        "brand_models": {
+            "1": {
+                "name": "Mercedes-Benz",
+                "models": {
+                    "1": "A 45 AMG",
+                    "2": "CE 230",
+                    "3": "CL 320",
+                    "4": "CLA 220"
+                }
+            },
+             "51": {
+                "name": "MG",
+                "models": {
+                    "1604": "Montego",
+                    "1605": "1600",
+                    "1606": "MGF",
+                    "1607": "ZR",
+                    "1608": "RV8",
+                    "1609": "ZS",
+                    "1610": "MGA",
+                    "1611": "TD",
+                    "1612": "ZT",
+                    "1613": "MGB",
+                    "1614": "TF",
+                    "1615": "Midget"
+                }
+            },
+            "58": {
+                "name": "Microcar",
+                "models": {
+                    "1616": "MC2",
+                    "1617": "DUE",
+                    "1618": "Virgo",
+                    "1619": "M.Go",
+                    "1620": "M-8",
+                    "1621": "MC1"
+                }
+            }
+        },
         "option": {
             "1": "4x4 performance",
             "2": "Anti-lock braking system",
@@ -154,11 +193,20 @@ GET /api/v1/get-settings HTTP/1.1
             "13": "Electric mirrors"
         },
         "keys": {
-            "1": 1,
-            "2": 2,
-            "3": 3,
-            "4": 4,
-            "5": 5
+            "1": "1",
+            "2": "2",
+            "3": "3",
+            "4": "4",
+            "5": "5"
+        },
+        "car_type": {
+            "E": "EU Car",
+            "U": "US Car",
+            "K": "Kit Car"
+        },
+        "pc_type": {
+            "P": "Personal",
+            "C": "Commercial"
         }
     },
     "message": null
@@ -299,27 +347,29 @@ GET /api/v1/get-company-settings HTTP/1.1
             "71": "test2",
             "72": "test 3"
         },
-         "hexon_portals": {
-            "4096": {
-                "name": "0800autolease.nl",
-                "type": "main"
-            },
-            "4117": {
-                "name": "123Machine",
-                "type": "main"
-            },
-            "4138": {
-                "name": "2dehands.be",
-                "type": "other"
-            },
-            "4159": {
-                "name": "2dehands.nl",
-                "type": "other"
-            },
-            "4180": {
-                "name": "AD Autobedrijf",
-                "type": "other"
-            }
+        "main_portals": {
+            "4096": "0800autolease.nl",
+            "4117": "123Machine",
+            "4264": "Audi.nl",
+            "4453": "Autodata Website 2",
+            "4789": "AutoTrack.be",
+            "4852": "Autowereld"
+        },
+        "other_portals": {
+            "4138": "2dehands.be",
+            "4159": "2dehands.nl",
+            "4180": "AD Autobedrijf",
+            "4201": "Agri Trader",
+            "4222": "Anamera.com",
+            "4243": "AssetTradex",
+            "4285": "Auto App",
+            "4306": "Auto Insite",
+            "4327": "Auto Trader",
+            "4348": "Auto Trader (spotplaatsing)",
+            "4369": "Auto- en transportwereld",
+            "4390": "AutoBLOX",
+            "4411": "AutoCenter.nl",
+            "4432": "Autodata Website"
         }
     },
     "message": null
@@ -610,23 +660,19 @@ GET /api/v1/car/{id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "id": "1",
-        "regplate": "DAC123",
+        "id": "2",
+        "regplate": "MS81UQ",
         "first_int_reg": "",
         "first_nl_reg": "",
-        "mileage": "175000",
+        "mileage": "22655",
         "btw": "BTW",
-        "year_of_make": "2005-11-07",
+        "year_of_make": "2000-10-31",
         "model_extra": "",
         "gearbox_type": "M",
         "inspected": "0",
-        "nr_of_keys": "0",
+        "nr_of_keys": "",
         "economic_value": "6000.00",
-        "price_b2b": "",
-        "price_b2c": "",
-        "price_export": "",
         "price_take_away": "",
-        "price_special_price": "",
         "price_brutto_bpm": "",
         "rest_bpm": "2000",
         "vin_number": "",
@@ -635,87 +681,53 @@ GET /api/v1/car/{id} HTTP/1.1
         "pc_type": "P",
         "car_type": "",
         "is_imported": "0",
-        "brand_id": "124",
-        "model_id": "1777",
+        "brand_id": "32",
+        "model_id": "1146",
         "color_id": "2",
         "fuel_id": "4",
-        "body_id": "6",
+        "body_id": "3",
         "apk_date": "",
         "guarantee_end_date": "",
+        "personal_tax": "",
         "original_new_price": "",
         "location_client_id": "",
         "location_address": "",
-        "blocked": "2015-12-22 09:02:11",
-        "location_in_stock": true,
+        "commercial_status": "outgoing",
+        "eu_price": "",
+        "eu_vat_price": "",
+        "b2b_price": "",
+        "b2c_price": "",
+        "location_in_stock": false,
         "is_new": true,
-        "extras": [
-            "1",
-            "2",
-            "6"
-        ],
-        "tags": [
-            "53",
-            "32"
-        ],
-        "tasks": [
-            "162"
-        ],
-        "advertsing": [
-            "4096",
-            "4117"
-        ],
-        "commercial_notes": [],
-        "transactions": {
-            "incoming": [
-                {
-                    "id": "1",
-                    "contact_id": "723",
-                    "employee_id": "47",
-                    "confirmed_at": "2015-12-14 08:57:04",
-                    "created_at": "2015-12-14 08:55:37",
-                    "updated_at": "2015-12-14 08:57:04",
-                    "deleted_at": null,
-                    "last_updated_by": "47",
-                    "separate_invoice_incoming": "1",
-                    "separate_invoice_outgoing": "1",
-                    "official_note": "",
-                    "pivot": {
-                        "car_id": "1",
-                        "order_id": "1"
-                    }
-                }
-            ],
-            "outgoing": [
-                {
-                    "id": "2",
-                    "contact_id": "725",
-                    "employee_id": "47",
-                    "confirmed_at": null,
-                    "created_at": "2015-12-14 11:19:30",
-                    "updated_at": "2015-12-14 11:21:02",
-                    "deleted_at": null,
-                    "last_updated_by": "47",
-                    "separate_invoice_incoming": "1",
-                    "separate_invoice_outgoing": "1",
-                    "official_note": "",
-                    "pivot": {
-                        "car_id": "1",
-                        "order_id": "2"
-                    }
-                }
-            ]
-        },
+        "blocked": false,
+        "extras": [],
+        "tags": [],
+        "tasks": [],
+        "advertising": [],
+        "commercial_note": "korte",
+        "commercial_note_id": "5",
         "images": {
-            "212": {
-                "name": "1zQT6LEeDWduTSlbS5tUR6dtlGEcqAIw.jpg",
-                "public": "1",
-                "url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/1zQT6LEeDWduTSlbS5tUR6dtlGEcqAIw.jpg"
+            "image-id-1JeM3HtdyHFPgh3Y13L72ZBfGt5IjtIC.jpg": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/1JeM3HtdyHFPgh3Y13L72ZBfGt5IjtIC.jpg"
+        },
+        "transactions": {
+            "incoming": {
+                "order_id": "2",
+                "price_on_invoice": "5000.00",
+                "order_creator": {
+                    "name": "Fodor Zsolt",
+                    "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/47-GUZElmlMsZaOcq4f24Bcm3XCJlFKIY01.jpg",
+                    "role": "super_admin"
+                },
+                "customer": {
+                    "name": "Dutch Client B2C",
+                    "company": "myCompany",
+                    "street": "Test Street 555",
+                    "post_code": "537037",
+                    "city": "Test City",
+                    "country": "Netherlands"
+                }
             },
-            "213": {
-                "name": "J09MG52BiKWaWA2WxlIwnPKNP1So5MEO.jpg",
-                "public": "1",
-                "url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/J09MG52BiKWaWA2WxlIwnPKNP1So5MEO.jpg"
-            }
+            "outgoing": {}
         }
     },
     "message": null
@@ -734,6 +746,317 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token 
 
+## Update car
+
+> HTTP Request:
+
+```http
+POST /api/v1/car-update/{id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/car-update/{id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+mileage | integer | true |
+btw | string | true |
+year_of_make | date | true |
+pc_type | string |true |
+economic_value | double | true |
+brand_id | integer | true |
+model_id | integer | true |
+fuel_id | integer | true |
+vin_number | string | false |
+regplate | string | false |
+model_extra | string | false |
+first_int_reg | date | false |
+first_nl_reg | date | false |
+apk_date | date| false |
+guarantee_end_date | date | false |
+color_id | integer | false |
+producer_color | string | false
+gearbox_type | string | false |
+body_id | integer | false |
+inspected | boolean | false
+nr_of_keys | integer | false |
+personal_tax | integer | false
+is_imported | boolean | false |
+car_type | string | false |
+economic_value | double | false |
+price_brutto_bpm | double | false |
+rest_bpm | double | false |
+price_take_away | double | false |
+original_new_price | double | false |
+b2b_price | double | false |
+b2c_price | double | false |
+eu_price | double | false |
+eu_vat_price | double | false
+is_new | boolean | false
+location_in_stock | boolean | false
+location_client_id | integer | false
+location_address | string | false
+blocked | boolean | false
+extras | array(integer) | false
+tags | array(integer) | false
+advertising | array(integer) | false
+
+## Create car tag
+
+> HTTP Request:
+
+```http
+POST /api/v1/car-create-tag HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "tags": [
+            {
+                "id": "82",
+                "value": "test tag",
+                "selected": false
+            },
+            {
+                "id": "52",
+                "value": "aztamindenitdekocsi",
+                "selected": false
+            },
+            {
+                "id": "53",
+                "value": "teszt kocsi",
+                "selected": false
+            },
+            {
+                "id": "80",
+                "value": "Nice",
+                "selected": false
+            },
+            {
+                "id": "81",
+                "value": "alma",
+                "selected": true
+            },
+            {
+                "id": "32",
+                "value": "Nice",
+                "selected": false
+            },
+            {
+                "id": "83",
+                "value": "korte",
+                "selected": false
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/car-create-tag`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id |integer | true
+name | string | true
+
+
+## Save car image
+
+> HTTP Request:
+
+```http
+POST /api/v1/car-save-image HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "images": {
+            "image-id-LS3aRN1wuqCgA9uxBhixM0a7tGbLaW1f.jpg": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/LS3aRN1wuqCgA9uxBhixM0a7tGbLaW1f.jpg"
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/car-save-image`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id | integer | true |
+image | FILE | true
+
+## Destroy car image
+
+> HTTP Request:
+
+```http
+POST /api/v1/car-destroy-image HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "images": {
+            "image-id-LS3aRN1wuqCgA9uxBhixM0a7tGbLaW1f.jpg": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/car_photos/LS3aRN1wuqCgA9uxBhixM0a7tGbLaW1f.jpg"
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/car-destroy-image`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+car_id | integer| true |
+prefixed_image_id | string | true |
+
+
+# Clients
+
+## List all client
+
+> HTTP Request:
+
+```http
+GET /api/v1/list-clients HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        "295",
+        "296",
+        "297",
+        "298",
+        "299",
+        "550"
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/list-clients`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+## Get clients
+
+> HTTP Request:
+
+```http
+POST /api/v1/get-clients HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        {
+            "id": "515",
+            "name": "Belastingdienst Amsterdam",
+            "phone": "+31 20-6877777",
+            "email": "voorbeeld@accountview.com",
+            "type": "b2b",
+            "is_holding": "0",
+            "type_name": "frontend.client_b2b",
+            "address": " , 1043 GN Amsterdam"
+        },
+        {
+            "id": "516",
+            "name": "UWV GAK",
+            "phone": "+31 20-5806111",
+            "email": "voorbeeld@accountview.com",
+            "type": "b2b",
+            "is_holding": "0",
+            "type_name": "frontend.client_b2b",
+            "address": " , 1062 EN Amsterdam"
+        }
+    ],
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/get-clients`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+client_ids | array | false |
 
 
 # Tasks
