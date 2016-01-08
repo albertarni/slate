@@ -1514,46 +1514,26 @@ GET /api/v1/order-create HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "22",
+        "order_id": "2434",
         "outgoing_cars": [
             {
-                "price_on_invoice": "50000.00",
-                "order_car_id": "122",
-                "car_id": "928",
-                "name": "Nissan Qashqai 2.0 Tekna 4WD (5-drs SUV)",
-                "extra_costs": [
-                    {
-                        "id": "9",
-                        "created_at": "2015-12-17 12:19:34",
-                        "updated_at": "2015-12-17 12:19:34",
-                        "name": "alma",
-                        "order_car_id": "122",
-                        "price": "100.00",
-                        "employee_id": "48",
-                        "type": "extra_cost"
-                    },
-                    {
-                        "id": "10",
-                        "created_at": "2015-12-17 12:19:40",
-                        "updated_at": "2015-12-17 12:19:40",
-                        "name": "korte",
-                        "order_car_id": "122",
-                        "price": "200.00",
-                        "employee_id": "48",
-                        "type": "extra_cost"
-                    }
-                ]
-            }
-        ],
-        "incoming_cars": [
-            {
-                "price_on_invoice": "10000.00",
-                "order_car_id": "123",
-                "car_id": "980",
-                "name": "Aston Martin Cygnet ",
+                "price_on_invoice": "0.00",
+                "order_car_id": "2585",
+                "car_id": "2191",
+                "name": "Skoda Fabia ",
                 "extra_costs": []
             }
-        ]
+        ],
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
     },
     "message": null
 }
@@ -1570,7 +1550,7 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
-car_id | integer | false | 
+
 
 ## List outgoing order cars
 > HTTP Request:
@@ -1687,7 +1667,7 @@ price | double | true
 > HTTP Request:
 
 ```http
-POST /api/v1/order/{order_id}/add-outgoing-car/{car_id} HTTP/1.1
+POST /api/v1/order/add-outgoing-car/{car_id} HTTP/1.1
 
 ```
 
@@ -1697,25 +1677,26 @@ POST /api/v1/order/{order_id}/add-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "22",
+        "order_id": "2434",
         "outgoing_cars": [
             {
                 "price_on_invoice": "0.00",
-                "order_car_id": "126",
-                "car_id": "899",
-                "name": "Opel Astra ",
+                "order_car_id": "2585",
+                "car_id": "2191",
+                "name": "Skoda Fabia ",
                 "extra_costs": []
             }
         ],
-        "incoming_cars": [
-            {
-                "price_on_invoice": "10000.00",
-                "order_car_id": "123",
-                "car_id": "980",
-                "name": "Aston Martin Cygnet ",
-                "extra_costs": []
-            }
-        ]
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
     },
     "message": null
 }
@@ -1725,13 +1706,14 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/add-outgoing-car/{car_id}
+`POST http://{{domain}}/api/v1/order/add-outgoing-car/{car_id}
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
+order_id | integer | false
 price_on_invoice | decimal | false | 
 
 ## Remove car from outgoing order
@@ -1748,17 +1730,26 @@ POST /api/v1/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "22",
-        "outgoing_cars": [],
-        "incoming_cars": [
+        "order_id": "2434",
+        "outgoing_cars": [
             {
-                "price_on_invoice": "10000.00",
-                "order_car_id": "123",
-                "car_id": "980",
-                "name": "Aston Martin Cygnet ",
+                "price_on_invoice": "0.00",
+                "order_car_id": "2585",
+                "car_id": "2191",
+                "name": "Skoda Fabia ",
                 "extra_costs": []
             }
-        ]
+        ],
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
     },
     "message": null
 }
@@ -1790,25 +1781,26 @@ POST /api/v1/order/{order_id}/add-incoming-car HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "22",
+        "order_id": "2434",
         "outgoing_cars": [
             {
                 "price_on_invoice": "0.00",
-                "order_car_id": "126",
-                "car_id": "899",
-                "name": "Opel Astra ",
+                "order_car_id": "2585",
+                "car_id": "2191",
+                "name": "Skoda Fabia ",
                 "extra_costs": []
             }
         ],
-        "incoming_cars": [
-            {
-                "price_on_invoice": "10000.00",
-                "order_car_id": "123",
-                "car_id": "980",
-                "name": "Aston Martin Cygnet ",
-                "extra_costs": []
-            }
-        ]
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
     },
     "message": null
 }
@@ -1861,17 +1853,26 @@ POST /api/v1/order/{order_id}/delete-incoming-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "22",
-        "outgoing_cars": [],
-        "incoming_cars": [
+        "order_id": "2434",
+        "outgoing_cars": [
             {
-                "price_on_invoice": "10000.00",
-                "order_car_id": "123",
-                "car_id": "980",
-                "name": "Aston Martin Cygnet ",
+                "price_on_invoice": "0.00",
+                "order_car_id": "2585",
+                "car_id": "2191",
+                "name": "Skoda Fabia ",
                 "extra_costs": []
             }
-        ]
+        ],
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
     },
     "message": null
 }
