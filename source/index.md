@@ -60,7 +60,7 @@ The user can initiate a login with this request.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v2/user/login`
+`POST http://{{domain}}/api/v1/user/login`
 
 ### QUERY Parameters
 
@@ -207,6 +207,24 @@ GET /api/v1/get-settings HTTP/1.1
         "pc_type": {
             "P": "Personal",
             "C": "Commercial"
+        },
+        "client_types": {
+            "b2b": "B2B Client",
+            "b2c": "B2C Client",
+            "ext": "EXT Client"
+        },
+        "contact_positions": {
+            "admin": "Admin",
+            "aftersales": "Aftersales",
+            "billing_admin": "Billing Admin",
+            "claims": "Claims",
+            "director": "Director",
+            "license_admin": "License Admin",
+            "owner": "Owner",
+            "purchase": "Purchase",
+            "sales_b2b": "Sales B2B",
+            "sales_b2c": "Sales B2C",
+            "workshop": "Workshop"
         }
     },
     "message": null
@@ -972,7 +990,7 @@ prefixed_image_id | string | true |
 > HTTP Request:
 
 ```http
-GET /api/v1/list-clients HTTP/1.1
+POST /api/v1/list-clients HTTP/1.1
 
 ```
 
@@ -997,7 +1015,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/list-clients`
+`POST http://{{domain}}/api/v1/list-clients`
 
 ### QUERY Parameters
 
@@ -1023,22 +1041,27 @@ POST /api/v1/get-clients HTTP/1.1
         {
             "id": "515",
             "name": "Belastingdienst Amsterdam",
-            "phone": "+31 20-6877777",
-            "email": "voorbeeld@accountview.com",
-            "type": "b2b",
-            "is_holding": "0",
-            "type_name": "frontend.client_b2b",
-            "address": " , 1043 GN Amsterdam"
+            "address": "Amsterdam"
         },
         {
             "id": "516",
             "name": "UWV GAK",
-            "phone": "+31 20-5806111",
-            "email": "voorbeeld@accountview.com",
-            "type": "b2b",
-            "is_holding": "0",
-            "type_name": "frontend.client_b2b",
-            "address": " , 1062 EN Amsterdam"
+            "address": "Amsterdam"
+        },
+        {
+            "id": "517",
+            "name": "Dawney",
+            "address": "Seattle"
+        },
+        {
+            "id": "514",
+            "name": "TPG Post",
+            "address": "Den Haag"
+        },
+        {
+            "id": "513",
+            "name": "CMK Real Estate",
+            "address": "Den Haag"
         }
     ],
     "message": null
@@ -1057,6 +1080,134 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
 client_ids | array | false |
+
+
+## Show client details
+
+> HTTP Request:
+
+```http
+GET /api/v1/get-client-details/{id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "name": "Dutch Client B2B",
+        "phone": "0077965465465",
+        "email": "dutch@client.com",
+        "type": "b2b",
+        "vat_number": "851250440B01",
+        "street": "Dutch",
+        "housenr": "444",
+        "post_code": "444445",
+        "city": "Dutch City",
+        "country_id": "200",
+        "contacts": [
+            {
+                "id": "863",
+                "name": "Test Test",
+                "position": "admin",
+                "phone": "",
+                "email": ""
+            },
+            {
+                "id": "864",
+                "name": "Test Test 2",
+                "position": "director",
+                "phone": "0365238451",
+                "email": "test@test.com"
+            },
+            {
+                "id": "865",
+                "name": "Albert Arnold",
+                "position": "director",
+                "phone": "0749093680",
+                "email": "albertarni@yahoo.com"
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/get-client-details/{id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+
+## Save client
+
+> HTTP Request:
+
+```http
+POST /api/v1/client HTTP/1.1
+
+```
+
+> Request:
+
+```json
+{
+  "token" : "feb72230-b90e-11e5-ba9d-c1fd2cb0eaed",
+  "client" : {
+    "id"	: "626",
+    "name" : "Albert Arnold",
+    "phone" : "0749093680",
+    "email" : "albertarni@yahoo.com",
+    "type" : "b2c",
+    "vat_number" : "8A12314AfG",
+    "country_id" : 200,
+    "street" : "Test Street",
+    "housenr" : "5555",
+    "post_code" : "537037",
+    "city" : "Tirgu Mures"
+  },
+  "contact" : {
+    "firstname" : "Test",
+    "lastname" : "Contact",
+    "position" : "director",
+    "phone" : "0365289410",
+    "email" : "test.contact@test.com"
+  } 
+}
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "contact_id": 861
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/client`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
 
 
 # Tasks
@@ -1514,13 +1665,16 @@ GET /api/v1/order-create HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2434",
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
         "outgoing_cars": [
             {
-                "price_on_invoice": "0.00",
-                "order_car_id": "2585",
-                "car_id": "2191",
-                "name": "Skoda Fabia ",
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
                 "extra_costs": []
             }
         ],
@@ -1600,14 +1754,9 @@ POST /api/v1/order/{order_id}/add-extra-cost' HTTP/1.1
     "data": {
         "extra_costs": [
             {
-                "id": "9",
-                "created_at": "2015-12-17 12:19:34",
-                "updated_at": "2015-12-17 12:19:34",
-                "name": "alma",
-                "order_car_id": "122",
-                "price": "100.00",
-                "employee_id": "48",
-                "type": "extra_cost"
+                "id": "91",
+                "name": "test-updated",
+                "price": "200.00"
             }
         ]
     },
@@ -1643,7 +1792,15 @@ POST /api/v1/extra-cost-update/{id} HTTP/1.1
 ```json
 {
     "status": 0,
-    "data": null,
+    "data": {
+        "extra_costs": [
+            {
+                "id": "91",
+                "name": "test-updated",
+                "price": "200.00"
+            }
+        ]
+    },
     "message": null
 }
 ```
@@ -1677,13 +1834,16 @@ POST /api/v1/order/add-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2434",
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
         "outgoing_cars": [
             {
-                "price_on_invoice": "0.00",
-                "order_car_id": "2585",
-                "car_id": "2191",
-                "name": "Skoda Fabia ",
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
                 "extra_costs": []
             }
         ],
@@ -1730,13 +1890,16 @@ POST /api/v1/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2434",
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
         "outgoing_cars": [
             {
-                "price_on_invoice": "0.00",
-                "order_car_id": "2585",
-                "car_id": "2191",
-                "name": "Skoda Fabia ",
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
                 "extra_costs": []
             }
         ],
@@ -1781,17 +1944,29 @@ POST /api/v1/order/{order_id}/add-incoming-car HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2434",
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
         "outgoing_cars": [
             {
-                "price_on_invoice": "0.00",
-                "order_car_id": "2585",
-                "car_id": "2191",
-                "name": "Skoda Fabia ",
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
                 "extra_costs": []
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "price_on_invoice": "2500.00",
+                "btw": "BTW",
+                "order_car_id": "2634",
+                "car_id": "2206",
+                "name": "Skoda Fabia 1.4 MPI",
+                "extra_costs": []
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
@@ -1831,13 +2006,13 @@ fuel_id | integer | true |
 gearbox_type | string | false | 
 pc_type | string | true | 
 body_id | integer | false |
-condition | string | true |   
 btw | string | true | 
 price_on_invoice | double | false |
 price_brutto_bpm | integer | false | 
 rest_bpm | integer | false | 
 price_estimated_costs | double | false | 
 economic_value | double | true | 
+is_new | boolean | true |
 
 ## Remove car from incoming order
 > HTTP Request:
@@ -1853,13 +2028,16 @@ POST /api/v1/order/{order_id}/delete-incoming-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2434",
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
         "outgoing_cars": [
             {
-                "price_on_invoice": "0.00",
-                "order_car_id": "2585",
-                "car_id": "2191",
-                "name": "Skoda Fabia ",
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
                 "extra_costs": []
             }
         ],
@@ -1902,7 +2080,33 @@ GET /api/v1/import-by-regplate/{regplate} HTTP/1.1
 > Response:
 
 ```json
-
+{
+    "status": 0,
+    "data": {
+        "regplate": "01RDKS",
+        "vin_number": "",
+        "brand_id": "35",
+        "model_id": "1258",
+        "model_extra": "2.0-16V Privilège Comfort",
+        "mileage": "",
+        "year_of_make": "2005-02-01",
+        "color_id": "7",
+        "fuel_id": "3",
+        "gearbox_type": "M",
+        "pc_type": "P",
+        "body_id": "4",
+        "btw": "",
+        "price_brutto_bpm": 6759,
+        "rest_bpm": 445,
+        "price_estimated_costs": "",
+        "economic_value": "",
+        "price_on_invoice": "",
+        "is_new": false,
+        "first_int_reg": "2005-02-18",
+        "first_nl_reg": "2005-02-18"
+    },
+    "message": null
+}
 ```
 
 Description text here.
@@ -1928,7 +2132,33 @@ GET /api/v1/import-by-vin/{vin} HTTP/1.1
 > Response:
 
 ```json
-
+{
+    "status": 0,
+    "data": {
+        "regplate": "",
+        "vin_number": "1G2ZG528454160048",
+        "brand_id": "8",
+        "model_id": "",
+        "model_extra": "320d",
+        "mileage": "",
+        "year_of_make": "2006-05-28",
+        "color_id": "",
+        "fuel_id": "",
+        "gearbox_type": "",
+        "pc_type": "",
+        "body_id": "",
+        "btw": "",
+        "price_brutto_bpm": "",
+        "rest_bpm": "",
+        "price_estimated_costs": "",
+        "economic_value": "",
+        "price_on_invoice": "",
+        "is_new": false,
+        "first_int_reg": "",
+        "first_nl_reg": ""
+    },
+    "message": null
+}
 ```
 
 Description text here.
@@ -1942,3 +2172,93 @@ Description text here.
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
+
+
+## Add contact to order
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/add-contact HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "order_id": "2448",
+        "contact_id": "863",
+        "client_id": "295",
+        "outgoing_cars": [
+            {
+                "price_on_invoice": "50000.00",
+                "btw": "BTW",
+                "order_car_id": "2695",
+                "car_id": "2148",
+                "name": "Fiat Punto ",
+                "extra_costs": []
+            }
+        ],
+        "incoming_cars": [],
+        "official_note": "",
+        "customer": {
+            "name": "Dutch Client B2B",
+            "company": "myCompany",
+            "street": "Dutch 444",
+            "post_code": "444445",
+            "city": "Dutch City",
+            "country": "Netherlands"
+        }
+    },
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/add-contact`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+contact_id | integer| true |
+
+
+## Accept order
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/accept HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/accept`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+separate_invoice_incoming | boolean | false |
+separate_invoice_outgoing | boolean | false |
+official_note | text | false |
