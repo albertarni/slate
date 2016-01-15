@@ -8,6 +8,7 @@ language_tabs:
 search: true
 ---
 
+
 # Introduction
 
 > Standard json response for API:
@@ -28,6 +29,47 @@ This means that the link to the api is: <b>url here</b>
 
 # User
 
+## Get companies by partial credentials
+
+> HTTP Request:
+
+```http
+POST /api/v1/get-companies-login' HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": [
+        {
+            "id": "1",
+            "name": "myCompany"
+        },
+        {
+            "id": "2",
+            "name": "yourCompany"
+        }
+    ],
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/get-companies-login`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+email | string | true | The email of the user which wants to login
+password | string | true | The password of the user which wants to login
+
+
 ## Login
 
 > HTTP Request:
@@ -43,7 +85,7 @@ POST /api/v1/login HTTP/1.1
 {
     "status": 0,
     "data": {
-        "token": "c73f1440-a3c2-11e5-ad02-bb8d25a8db36",
+        "token": "458cfb10-bb7b-11e5-ba6a-23acb8434708",
         "user": {
             "id": "48",
             "name": "User One",
@@ -60,14 +102,79 @@ The user can initiate a login with this request.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/user/login`
+`POST http://{{domain}}/api/v1/login`
 
 ### QUERY Parameters
 
 Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
-username | string(20) | true | The username of the user which wants to login
-password | string(255) | true | The password of the user which wants to login
+email | string | true | The email of the user which wants to login
+password | string | true | The password of the user which wants to login
+company_id | integer | true | 
+
+
+## Logout
+
+> HTTP Request:
+
+```http
+POST /api/v1/logout HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/logout`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+
+## Forgot password
+
+> HTTP Request:
+
+```http
+POST /api/v1/forgot-password HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/forgot-password`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+email | string | true | The email of the user which wants to login
+
+
 
 # Get settings
 
@@ -627,7 +734,8 @@ POST /api/v1/get-cars HTTP/1.1
             "b2b_price": "0.00",
             "b2c_price": "0.00",
             "url": "http://www.balletmakkai.com/images/face.png",
-            "can_be_added_to_order": false
+            "can_be_added_to_order": false,
+            "rest_bpm": "2000"
         },
         {
             "id": "951",
@@ -643,7 +751,8 @@ POST /api/v1/get-cars HTTP/1.1
             "b2b_price": "",
             "b2c_price": "",
             "url": "http://www.balletmakkai.com/images/face.png",
-            "can_be_added_to_order": false
+            "can_be_added_to_order": false,
+            "rest_bpm": ""
         }
     ],
     "message": null
@@ -1665,20 +1774,46 @@ GET /api/v1/order-create HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
@@ -1834,20 +1969,46 @@ POST /api/v1/order/add-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
@@ -1874,7 +2035,10 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 token | string | true | The authentication token
 order_id | integer | false
+rest_bpm | decimal | true |
 price_on_invoice | decimal | false | 
+request_insurance | boolean | false |
+request_credit | boolean | false |
 
 ## Remove car from outgoing order
 > HTTP Request:
@@ -1890,20 +2054,46 @@ POST /api/v1/order/{order_id}/delete-outgoing-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
@@ -1944,27 +2134,44 @@ POST /api/v1/order/{order_id}/add-incoming-car HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
         "incoming_cars": [
             {
-                "price_on_invoice": "2500.00",
-                "btw": "BTW",
-                "order_car_id": "2634",
-                "car_id": "2206",
-                "name": "Skoda Fabia 1.4 MPI",
-                "extra_costs": []
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
             }
         ],
         "official_note": "",
@@ -2028,20 +2235,46 @@ POST /api/v1/order/{order_id}/delete-incoming-car/{car_id} HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
@@ -2188,20 +2421,46 @@ POST /api/v1/order/{order_id}/add-contact HTTP/1.1
 {
     "status": 0,
     "data": {
-        "order_id": "2448",
-        "contact_id": "863",
+        "order_id": "2449",
+        "contact_id": "864",
         "client_id": "295",
         "outgoing_cars": [
             {
+                "regplate": "ARNI04",
                 "price_on_invoice": "50000.00",
                 "btw": "BTW",
-                "order_car_id": "2695",
-                "car_id": "2148",
-                "name": "Fiat Punto ",
-                "extra_costs": []
+                "order_car_id": "2723",
+                "car_id": "2187",
+                "name": "Skoda Fabia ",
+                "extra_costs": [
+                    {
+                        "id": "166",
+                        "name": "test1",
+                        "price": "100.00"
+                    },
+                    {
+                        "id": "167",
+                        "name": "test2",
+                        "price": "200.00"
+                    }
+                ],
+                "request_insurance": "0",
+                "request_credit": "1"
             }
         ],
-        "incoming_cars": [],
+        "incoming_cars": [
+            {
+                "regplate": "HR01AB",
+                "price_on_invoice": "50000.00",
+                "btw": "MARGE",
+                "order_car_id": "2725",
+                "car_id": "2220",
+                "name": "Alfa Romeo 146 ",
+                "extra_costs": [],
+                "request_insurance": "",
+                "request_credit": ""
+            }
+        ],
         "official_note": "",
         "customer": {
             "name": "Dutch Client B2B",
