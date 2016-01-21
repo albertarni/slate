@@ -174,6 +174,150 @@ Parameter | Type | Required | Description
 --------- | ---- | -------- | -----------
 email | string | true | The email of the user which wants to login
 
+## Show profile
+
+> HTTP Request:
+
+```http
+GET /api/v1/profile HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "email": "userone@test.com",
+        "firstname": "User",
+        "lastname": "One1",
+        "mobile_phone": "0755555555",
+        "direct_phone": "0265555555",
+        "photo": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-vWA6qmhzZOmZxcVstIxrk4tEM8MUhl6g-122x122.jpg",
+        "tempdir": "5121-56a0bd5ab5a03",
+        "roles": [
+            {
+                "id": "3",
+                "name": "administration",
+                "has_role": "0",
+                "can_edit": true
+            },
+            {
+                "id": "6",
+                "name": "inspection",
+                "has_role": "0",
+                "can_edit": true
+            },
+            {
+                "id": "5",
+                "name": "repairment",
+                "has_role": "0",
+                "can_edit": true
+            },
+            {
+                "id": "2",
+                "name": "sales",
+                "has_role": "0",
+                "can_edit": true
+            },
+            {
+                "id": "1",
+                "name": "super_admin",
+                "has_role": "1",
+                "can_edit": false
+            }
+        ]
+    },
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`GET http://{{domain}}/api/v1/profile`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+
+
+## Upload profile picture
+
+> HTTP Request:
+
+```http
+POST /api/v1/profile-upload-photo HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "photo": "http://local.helga/uploads/temp/5114-56a0b950a8303/20090110_vertical002.jpg"
+    },
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/profile-upload-photo`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+tempdir | string | true |
+photo | FILE | true |
+
+
+## Update profile
+
+> HTTP Request:
+
+```http
+POST /api/v1/profile HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": {
+        "photo": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-vWA6qmhzZOmZxcVstIxrk4tEM8MUhl6g.jpg"
+    },
+    "message": null
+}
+```
+
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/profile`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+tempdir | string | true |
+firstname | string | true |
+lastname | string | true |
+email | string | true |
+roles | array(integer) | true |
+mobile_phone | string | false |
+direct_phone | string | false |
 
 
 # Get settings
