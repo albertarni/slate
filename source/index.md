@@ -990,23 +990,41 @@ GET /api/v1/car/{id} HTTP/1.1
         },
         "transactions": {
             "incoming": {
-                "order_id": "2",
-                "price_on_invoice": "5000.00",
+                "order_id": "2419",
+                "type": "incoming",
+                "price_on_invoice": "6000.00",
                 "order_creator": {
-                    "name": "Fodor Zsolt",
-                    "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/47-GUZElmlMsZaOcq4f24Bcm3XCJlFKIY01.jpg",
+                    "name": "User One1",
+                    "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-F3wmhrbKV5UY6LyHKv0fmdO31TnASC6w.jpg",
                     "role": "super_admin"
                 },
                 "customer": {
-                    "name": "Dutch Client B2C",
+                    "name": "Dutch Client B2B",
                     "company": "myCompany",
-                    "street": "Test Street 555",
-                    "post_code": "537037",
-                    "city": "Test City",
+                    "street": "Dutch 444",
+                    "post_code": "444445",
+                    "city": "Dutch City",
                     "country": "Netherlands"
                 }
             },
-            "outgoing": {}
+            "outgoing": {
+                "order_id": "2420",
+                "type": "outgoing",
+                "price_on_invoice": "14500.00",
+                "order_creator": {
+                    "name": "User One1",
+                    "profile_pic_url": "https://helga1.s3-eu-west-1.amazonaws.com/uploads/employee-avatars/48-F3wmhrbKV5UY6LyHKv0fmdO31TnASC6w.jpg",
+                    "role": "super_admin"
+                },
+                "customer": {
+                    "name": "Dutch Client B2B",
+                    "company": "myCompany",
+                    "street": "Dutch 444",
+                    "post_code": "444445",
+                    "city": "Dutch City",
+                    "country": "Netherlands"
+                }
+            }
         }
     },
     "message": null
