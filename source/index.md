@@ -23,9 +23,9 @@ search: true
 
 This is an API documentation for the project Helga.
 
-In this documentation the {domain} refers for the currently used domain site link. In case of the staging, this would be: <b>url here</b> 
+In this documentation the {domain} refers for the currently used domain site link : <b>helga.eu</b>
 
-This means that the link to the api is: <b>url here</b>
+This means that the link to the api is: <b>https://helga.eu/api/v1/</b>
 
 # User
 
@@ -60,7 +60,7 @@ POST /api/v1/get-companies-login' HTTP/1.1
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/get-companies-login`
+`POST https://{{domain}}/api/v1/get-companies-login`
 
 ### QUERY Parameters
 
@@ -102,7 +102,7 @@ The user can initiate a login with this request.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/login`
+`POST https://{{domain}}/api/v1/login`
 
 ### QUERY Parameters
 
@@ -135,7 +135,7 @@ POST /api/v1/logout HTTP/1.1
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/logout`
+`POST https://{{domain}}/api/v1/logout`
 
 ### QUERY Parameters
 
@@ -166,7 +166,7 @@ POST /api/v1/forgot-password HTTP/1.1
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/forgot-password`
+`POST https://{{domain}}/api/v1/forgot-password`
 
 ### QUERY Parameters
 
@@ -236,7 +236,7 @@ GET /api/v1/profile HTTP/1.1
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/profile`
+`GET https://{{domain}}/api/v1/profile`
 
 ### QUERY Parameters
 
@@ -260,7 +260,7 @@ POST /api/v1/profile-upload-photo HTTP/1.1
 {
     "status": 0,
     "data": {
-        "photo": "http://local.helga/uploads/temp/5114-56a0b950a8303/20090110_vertical002.jpg"
+        "photo": "https://local.helga/uploads/temp/5114-56a0b950a8303/20090110_vertical002.jpg"
     },
     "message": null
 }
@@ -269,7 +269,7 @@ POST /api/v1/profile-upload-photo HTTP/1.1
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/profile-upload-photo`
+`POST https://{{domain}}/api/v1/profile-upload-photo`
 
 ### QUERY Parameters
 
@@ -304,7 +304,7 @@ POST /api/v1/profile HTTP/1.1
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/profile`
+`POST https://{{domain}}/api/v1/profile`
 
 ### QUERY Parameters
 
@@ -492,7 +492,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/get-settings`
+`GET https://{{domain}}/api/v1/get-settings`
 
 ### QUERY Parameters
 
@@ -520,15 +520,15 @@ GET /api/v1/get-company-settings HTTP/1.1
                 "employees": {
                     "46": {
                         "name": "Zoltan Nagy",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
                     "47": {
                         "name": "Fodor Zsolt",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
                     "48": {
                         "name": "User One",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
                 }
             },
@@ -537,15 +537,15 @@ GET /api/v1/get-company-settings HTTP/1.1
                 "employees": {
                     "60": {
                         "name": "Virginia Woolf",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
                     "77": {
                         "name": "Test Employee",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
                     "82": {
                         "name": "Emailer FF",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
                 }
             },
@@ -554,11 +554,11 @@ GET /api/v1/get-company-settings HTTP/1.1
                 "employees": {
                     "53": {
                         "name": "Jane Austen",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     },
                     "60": {
                         "name": "Virginia Woolf",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
                 }
             },
@@ -571,7 +571,7 @@ GET /api/v1/get-company-settings HTTP/1.1
                 "employees": {
                     "73": {
                         "name": "Simple One",
-                        "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                        "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
                     }
                 }
             }
@@ -655,7 +655,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/get-company-settings`
+`GET https://{{domain}}/api/v1/get-company-settings`
 
 ### QUERY Parameters
 
@@ -694,7 +694,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/list-incoming-cars`
+`POST https://{{domain}}/api/v1/list-incoming-cars`
 
 ### QUERY Parameters
 
@@ -730,7 +730,7 @@ Description text here.
 
 ### HTTP Request
 
-`POSt http://{{domain}}/api/v1/list-instock-cars`
+`POSt https://{{domain}}/api/v1/list-instock-cars`
 
 ### QUERY Parameters
 
@@ -766,7 +766,7 @@ Description text here.
 
 ### HTTP Request
 
-`POSt http://{{domain}}/api/v1/list-outgoing-cars`
+`POSt https://{{domain}}/api/v1/list-outgoing-cars`
 
 ### QUERY Parameters
 
@@ -802,7 +802,7 @@ Description text here.
 
 ### HTTP Request
 
-`POSt http://{{domain}}/api/v1/list-archive-cars`
+`POSt https://{{domain}}/api/v1/list-archive-cars`
 
 ### QUERY Parameters
 
@@ -848,7 +848,7 @@ Description text here.
 
 ### HTTP Request
 
-`POSt http://{{domain}}/api/v1/list-all-cars-grouped`
+`POSt https://{{domain}}/api/v1/list-all-cars-grouped`
 
 ### QUERY Parameters
 
@@ -883,7 +883,7 @@ POST /api/v1/get-cars HTTP/1.1
             "eu_vat_price": "0.00",
             "b2b_price": "0.00",
             "b2c_price": "0.00",
-            "url": "http://www.balletmakkai.com/images/face.png",
+            "url": "https://www.balletmakkai.com/images/face.png",
             "can_be_added_to_order": false,
             "rest_bpm": "2000",
             "btw": "MARGE"
@@ -901,7 +901,7 @@ POST /api/v1/get-cars HTTP/1.1
             "eu_vat_price": "",
             "b2b_price": "",
             "b2c_price": "",
-            "url": "http://www.balletmakkai.com/images/face.png",
+            "url": "https://www.balletmakkai.com/images/face.png",
             "can_be_added_to_order": false,
             "rest_bpm": "",
             "btw": "BTW"
@@ -915,7 +915,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/get-cars`
+`POST https://{{domain}}/api/v1/get-cars`
 
 ### QUERY Parameters
 
@@ -1035,7 +1035,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/car/{id}`
+`GET https://{{domain}}/api/v1/car/{id}`
 
 ### QUERY Parameters
 
@@ -1066,7 +1066,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/car-update/{id}`
+`POST https://{{domain}}/api/v1/car-update/{id}`
 
 ### QUERY Parameters
 
@@ -1139,7 +1139,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/change-transaction-details/{car_id}`
+`POST https://{{domain}}/api/v1/order/{order_id}/change-transaction-details/{car_id}`
 
 ### QUERY Parameters
 
@@ -1211,7 +1211,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/car-create-tag`
+`POST https://{{domain}}/api/v1/car-create-tag`
 
 ### QUERY Parameters
 
@@ -1249,7 +1249,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/car-save-image`
+`POST https://{{domain}}/api/v1/car-save-image`
 
 ### QUERY Parameters
 
@@ -1286,7 +1286,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/car-destroy-image`
+`POST https://{{domain}}/api/v1/car-destroy-image`
 
 ### QUERY Parameters
 
@@ -1329,7 +1329,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/list-clients`
+`POST https://{{domain}}/api/v1/list-clients`
 
 ### QUERY Parameters
 
@@ -1386,7 +1386,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/get-clients`
+`POST https://{{domain}}/api/v1/get-clients`
 
 ### QUERY Parameters
 
@@ -1453,7 +1453,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/get-client-details/{id}`
+`GET https://{{domain}}/api/v1/get-client-details/{id}`
 
 ### QUERY Parameters
 
@@ -1515,7 +1515,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/client`
+`POST https://{{domain}}/api/v1/client`
 
 ### QUERY Parameters
 
@@ -1553,7 +1553,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/list-tasks`
+`GET https://{{domain}}/api/v1/list-tasks`
 
 ### QUERY Parameters
 
@@ -1589,7 +1589,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/list-my-tasks`
+`GET https://{{domain}}/api/v1/list-my-tasks`
 
 ### QUERY Parameters
 
@@ -1632,7 +1632,7 @@ POST /api/v1/get-tasks HTTP/1.1
             "is_opened": true,
             "assignee": {
                 "name": "Test Employee",
-                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png"
+                "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png"
             },
             "pickup_address": "Fake, 374, 455455 Tg Mures 123",
             "delivery_address": "Dutch, 444, 444445 Dutch City 123"
@@ -1646,7 +1646,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/get-tasks`
+`POST https://{{domain}}/api/v1/get-tasks`
 
 ### QUERY Parameters
 
@@ -1717,7 +1717,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/task/{id}`
+`GET https://{{domain}}/api/v1/task/{id}`
 
 ### QUERY Parameters
 
@@ -1750,7 +1750,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/task`
+`POST https://{{domain}}/api/v1/task`
 
 ### QUERY Parameters
 
@@ -1791,7 +1791,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/task-update/{id}`
+`POST https://{{domain}}/api/v1/task-update/{id}`
 
 ### QUERY Parameters
 
@@ -1852,7 +1852,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/task-save-file/{task_id}`
+`POST https://{{domain}}/api/v1/task-save-file/{task_id}`
 
 ### QUERY Parameters
 
@@ -1906,7 +1906,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/task-destroy-file`
+`POST https://{{domain}}/api/v1/task-destroy-file`
 
 ### QUERY Parameters
 
@@ -1934,13 +1934,13 @@ POST /api/v1/task-save-comment/{task_id} HTTP/1.1
         "comments": [
             {
                 "employee_name": "Zoltan Nagy",
-                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png",
+                "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png",
                 "created_at": "2015-12-18",
                 "comment": "almafa-123"
             },
             {
                 "employee_name": "Zoltan Nagy",
-                "profile_pic_url": "http://local.helga/uploads/employee-avatars/public/img/user-image.png",
+                "profile_pic_url": "https://local.helga/uploads/employee-avatars/public/img/user-image.png",
                 "created_at": "2015-12-18",
                 "comment": "almafa"
             }
@@ -1954,7 +1954,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/task-save-comment/{task_id}
+`POST https://{{domain}}/api/v1/task-save-comment/{task_id}
 
 ### QUERY Parameters
 
@@ -2037,7 +2037,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/order-create
+`GET https://{{domain}}/api/v1/order-create
 
 ### QUERY Parameters
 
@@ -2071,7 +2071,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/list-outgoing-order-cars
+`GET https://{{domain}}/api/v1/list-outgoing-order-cars
 
 ### QUERY Parameters
 
@@ -2108,7 +2108,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/add-extra-cost`
+`POST https://{{domain}}/api/v1/order/{order_id}/add-extra-cost`
 
 ### QUERY Parameters
 
@@ -2149,7 +2149,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/extra-cost-update/{id}`
+`POST https://{{domain}}/api/v1/extra-cost-update/{id}`
 
 ### QUERY Parameters
 
@@ -2232,7 +2232,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/add-outgoing-car/{car_id}
+`POST https://{{domain}}/api/v1/order/add-outgoing-car/{car_id}
 
 ### QUERY Parameters
 
@@ -2318,7 +2318,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/delete-outgoing-car/{car_id}
+`POST https://{{domain}}/api/v1/order/{order_id}/delete-outgoing-car/{car_id}
 
 ### QUERY Parameters
 
@@ -2398,7 +2398,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/add-incoming-car
+`POST https://{{domain}}/api/v1/order/{order_id}/add-incoming-car
 
 ### QUERY Parameters
 
@@ -2500,7 +2500,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/delete-incoming-car/{car_id}
+`POST https://{{domain}}/api/v1/order/{order_id}/delete-incoming-car/{car_id}
 
 ### QUERY Parameters
 
@@ -2553,7 +2553,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/import-by-regplate/{regplate}
+`GET https://{{domain}}/api/v1/import-by-regplate/{regplate}
 
 ### QUERY Parameters
 
@@ -2605,7 +2605,7 @@ Description text here.
 
 ### HTTP Request
 
-`GET http://{{domain}}/api/v1/import-by-vin/{vin}
+`GET https://{{domain}}/api/v1/import-by-vin/{vin}
 
 ### QUERY Parameters
 
@@ -2686,7 +2686,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/add-contact`
+`POST https://{{domain}}/api/v1/order/{order_id}/add-contact`
 
 ### QUERY Parameters
 
@@ -2718,7 +2718,7 @@ Description text here.
 
 ### HTTP Request
 
-`POST http://{{domain}}/api/v1/order/{order_id}/accept`
+`POST https://{{domain}}/api/v1/order/{order_id}/accept`
 
 ### QUERY Parameters
 
