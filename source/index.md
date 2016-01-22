@@ -476,6 +476,12 @@ GET /api/v1/get-settings HTTP/1.1
             "sales_b2b": "Sales B2B",
             "sales_b2c": "Sales B2C",
             "workshop": "Workshop"
+        },
+        "commercial_statuses": {
+            "incoming": "Incoming",
+            "in_stock": "In Stock",
+            "outgoing": "Outgoing",
+            "archived": "Archived"
         }
     },
     "message": null
@@ -879,7 +885,8 @@ POST /api/v1/get-cars HTTP/1.1
             "b2c_price": "0.00",
             "url": "http://www.balletmakkai.com/images/face.png",
             "can_be_added_to_order": false,
-            "rest_bpm": "2000"
+            "rest_bpm": "2000",
+            "btw": "MARGE"
         },
         {
             "id": "951",
@@ -896,7 +903,8 @@ POST /api/v1/get-cars HTTP/1.1
             "b2c_price": "",
             "url": "http://www.balletmakkai.com/images/face.png",
             "can_be_added_to_order": false,
-            "rest_bpm": ""
+            "rest_bpm": "",
+            "btw": "BTW"
         }
     ],
     "message": null
@@ -1079,15 +1087,50 @@ original_new_price | double | false |
 b2b_price | double | false |
 b2c_price | double | false |
 eu_price | double | false |
-eu_vat_price | double | false
-is_new | boolean | false
-location_in_stock | boolean | false
-location_client_id | integer | false
-location_address | string | false
-blocked | boolean | false
-extras | array(integer) | false
-tags | array(integer) | false
-advertising | array(integer) | false
+eu_vat_price | double | false |
+is_new | boolean | false |
+location_in_stock | boolean | false |
+location_client_id | integer | false |
+location_address | string | false |
+blocked | boolean | false |
+extras | array(integer) | false |
+tags | array(integer) | false |
+advertising | array(integer) | false |
+commercial_status | string | false |
+
+
+## Change car transaction details
+> HTTP Request:
+
+```http
+POST /api/v1/order/{order_id}/change-transaction-details/{car_id} HTTP/1.1
+
+```
+
+> Response:
+
+```json
+{
+    "status": 0,
+    "data": null,
+    "message": null
+}
+```
+
+Description text here.
+
+### HTTP Request
+
+`POST http://{{domain}}/api/v1/order/{order_id}/change-transaction-details/{car_id}`
+
+### QUERY Parameters
+
+Parameter | Type | Required | Description
+--------- | ---- | -------- | -----------
+token | string | true | The authentication token
+type | string | true |
+expected_transfer_date | DATE | false |
+
 
 ## Create car tag
 
@@ -2183,6 +2226,7 @@ rest_bpm | decimal | true |
 price_on_invoice | decimal | false | 
 request_insurance | boolean | false |
 request_credit | boolean | false |
+expected_transfer_date | DATE | false |
 
 ## Remove car from outgoing order
 > HTTP Request:
@@ -2364,6 +2408,7 @@ rest_bpm | integer | false |
 price_estimated_costs | double | false | 
 economic_value | double | true | 
 is_new | boolean | true |
+expected_transfer_date | DATE | false |
 
 ## Remove car from incoming order
 > HTTP Request:
