@@ -992,6 +992,7 @@ GET /api/v1/car/{id} HTTP/1.1
             "incoming": {
                 "order_id": "2419",
                 "type": "incoming",
+                "expected_transfer_date": "2016-01-03",
                 "price_on_invoice": "6000.00",
                 "order_creator": {
                     "name": "User One1",
@@ -1010,6 +1011,7 @@ GET /api/v1/car/{id} HTTP/1.1
             "outgoing": {
                 "order_id": "2420",
                 "type": "outgoing",
+                "expected_transfer_date": "2016-01-03",
                 "price_on_invoice": "14500.00",
                 "order_creator": {
                     "name": "User One1",
@@ -1678,6 +1680,8 @@ GET /api/v1/task/{id} HTTP/1.1
         "assigned_role_id": "",
         "pickup_address": "Fake, 374, 455455 Tg Mures 123",
         "delivery_address": "Dutch, 444, 444445 Dutch City 123",
+        "price": "100",
+        "is_economical_price_reduced": "0",
         "deadline": "2015-11-30",
         "is_opened": true,
         "task_files": [
@@ -1766,6 +1770,8 @@ assigned_role_id | integer | true (if assigned_employee_id has not been sent) |
 deadline | date | false | Date format (YY-MM-DD) 
 pickup_address | string | false |
 delivery_address | string | false | 
+price | double | false |
+is_economical_price_reduced | boolean | false |
 
 
 ## Update task
@@ -1807,6 +1813,8 @@ assigned_role_id | integer | true (if assigned_employee_id has not been sent) |
 deadline | date | false | Date format (YY-MM-DD) 
 pickup_address | string | false |
 delivery_address | string | false | 
+price | double | false |
+is_economical_price_reduced | boolean | false |
 
 ## Save task file
 
